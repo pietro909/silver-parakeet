@@ -280,12 +280,19 @@
     color: var(--muted);
     opacity: 0;
     animation: fade-in 1.2s 1.4s forwards;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem 0.9rem;
   }
   .date-line strong {
     color: var(--accent-3);
     font-weight: 600;
     letter-spacing: 0.15em;
   }
+  .date-line .dim { opacity: 0.7; }
+  .date-line .sep { opacity: 0.5; }
 
   @keyframes fade-in {
     from { opacity: 0; transform: translateY(12px); }
@@ -313,6 +320,11 @@
     }
     .pre-title { letter-spacing: 0.3em; }
     h1 { letter-spacing: -0.01em; }
+    .date-line {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .date-line .sep { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -364,7 +376,11 @@
   </div>
 
   <p class="date-line">
-    <strong>22 · 05 · 2026</strong> &nbsp;·&nbsp; ore 20:00 (ora italiana) &nbsp;·&nbsp; <span style="opacity:.7">Sezione B</span>
+    <strong>22 · 05 · 2026</strong>
+    <span class="sep" aria-hidden="true">·</span>
+    <span>ore 20:00 (ora italiana)</span>
+    <span class="sep" aria-hidden="true">·</span>
+    <span class="dim">Sezione B</span>
   </p>
 </main>
 
@@ -422,7 +438,7 @@
   function arrive() {
     $app.classList.add('arrived');
     $app.innerHTML = `
-      <p class="pre-title">FORNO ACCESO</p>
+      <p class="pre-title">SEI IN RITARDO, CAZZO!</p>
       <h1>🍕 Pizza time! 🍺</h1>
     `;
     launchConfetti();
